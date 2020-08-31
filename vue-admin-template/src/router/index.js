@@ -83,6 +83,27 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/order',
+    name: 'Order',
+    component: Layout,
+    redirect: '/customer/customer',
+    meta: { title: '订单管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'orderManage',
+        name: 'OrderManage',
+        component: () => import('@/views/order/index'),
+        meta: { title: '订单管理', icon: 'table' }
+      },
+      {
+        path: 'orderDetail/:id',
+        name: 'OrderDetail',
+        component: () => import('@/views/order/oredrDetail/index'),
+        meta: { title: '订单详情', icon: 'table' }
+      },
+    ]
+  },
+  {
     path: '/material',
     name: 'material',
     component: Layout,

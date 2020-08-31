@@ -31,7 +31,7 @@
             ></el-option>
           </el-select>
         </el-col>
-        <el-col :offset="22" style="margin-top:30px;">
+        <el-col :offset="20" style="margin-top:40px;">
           <el-button size="small" plain @click="doReset">重置</el-button>
           <el-button size="small" type="primary" @click="doSearch">搜索</el-button>
         </el-col>

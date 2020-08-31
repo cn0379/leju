@@ -1,7 +1,7 @@
 <template>
   <div class="brand-main">
-    <el-card class="card" shadow="never">
-      <Header />
+    <el-card class="card" v-loading="loading" shadow="never">
+      <Header :title="`用户名称`" :desc="`手机号`" />
       <el-button type="primary" style="margin-left:27px;" @click="goAddBrand">新增</el-button>
       <div class="card-container">
         <el-card class="card-item" v-for="item in brandList" :key="item.id" shadow="hover">
@@ -45,6 +45,7 @@ export default {
       dialog: false, // 图片预览隐藏颜色
       brandList: [], // 品牌列表
       bigPic: '', // 预览大图
+      loading: false // 加载交互
     };
   },
   created() {
@@ -53,8 +54,10 @@ export default {
   methods: {
     // 获取品牌列表
     async getBarnList() {
-      const { data } = await brandApi.brandList();
+      this.loading = true;
+      const { data } = await brandApi.brandList(this.page);
       this.brandList = data;
+      this.loading = false;
     },
     // 添加
     goAddBrand() {

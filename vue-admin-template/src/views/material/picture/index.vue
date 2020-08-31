@@ -62,7 +62,6 @@ export default {
     async getPicList() {
       this.loading = true;
       delete this.page.sizes;
-      this.page.limit = 12;
       const { data } = await picApi.pictureList({ ...this.page });
       console.log(data);
       this.pictureList = data.list;

@@ -372,7 +372,6 @@ export default {
       cityNum = data.origin_code && data.origin_code.split(",")
       this.selectCity = cityNum && ( cityNum = cityNum.length === 2) || this.getCityCode(this.selectCity) // 防止 city 编码数据不完整
       this.skuList = this.currentGoods.skuList;
-      console.log(this.currentGoods)
       this.setTin(this.currentGoods.content);
       if (this.currentGoods.link1) {
         if (this.currentGoods.link1.indexOf(",") != 1) {
