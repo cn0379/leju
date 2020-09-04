@@ -36,7 +36,7 @@
         <el-table-column label="完成时间" align="center" width="200" prop="payTime" ></el-table-column>
         <el-table-column fixed="right"  align="center" label="操作" width="200">
           <template slot-scope="scope" >
-            <el-button type="primary" size="small"  @click="doViewOrder(scope.row.orderId)">查看订单</el-button>
+            <el-button type="primary" size="small" @click="doViewOrder(scope.row.orderId)">查看订单</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -81,7 +81,7 @@ export default {
     this.getOrderList()
   },
   computed: {
-   
+    
   },
   methods: {
     //获取订单
@@ -112,6 +112,11 @@ export default {
 
 <style  lang='scss' scoped>
 .order-main {
+  background-color: #F5F7FA;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  &::-webkit-scrollbar {display:none}
   .card {
     margin: 30px;
   }

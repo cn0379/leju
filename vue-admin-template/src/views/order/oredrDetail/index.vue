@@ -212,9 +212,6 @@ export default {
       padding-top: 20px;
       color: #ff0000;
     }
-    .order-status {
-      
-    }
   }
   .btn {
     padding: 20px 0;

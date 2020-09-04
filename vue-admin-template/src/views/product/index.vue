@@ -1,8 +1,8 @@
 <template>
   <div class="product-main">
-    <el-card class="card" shadow="hover">
+    <el-card class="card" shadow="never">
       <div slot="header">
-        <span>条件查询</span>
+        <span>搜索条件</span>
       </div>
       <el-row :gutter="30">
         <el-col :span="6">
@@ -56,17 +56,14 @@
         <el-table-column align="center" label="标签" width="250">
           <template slot-scope="scope">
             <p>
-              上架:
-              <el-switch v-model="scope.row.isshow" :active-value="1" :inactive-value="0"  @change="switchChange('isshow', scope.row.isshow, scope.row.id)" />
+              上架:<el-switch v-model="scope.row.isshow" :active-value="1" :inactive-value="0"  @change="switchChange('isshow', scope.row.isshow, scope.row.id)" />
             </p>
             <p>
-              最热:
-              <el-switch v-model="scope.row.ishot" :active-value="1" :inactive-value="0" @change="switchChange('ishot', scope.row.isshow, scope.row.id)" />
+              最热:<el-switch v-model="scope.row.ishot" :active-value="1" :inactive-value="0" @change="switchChange('ishot', scope.row.isshow, scope.row.id)" />
             </p>
 
             <p>
-              最新:
-              <el-switch v-model="scope.row.isnew" :active-value="1" :inactive-value="0" @change="switchChange('isnew', scope.row.isshow, scope.row.id)" />
+              最新:<el-switch v-model="scope.row.isnew" :active-value="1" :inactive-value="0" @change="switchChange('isnew', scope.row.isshow, scope.row.id)" />
             </p>
           </template>
         </el-table-column>
@@ -93,8 +90,8 @@
           </template>
         </el-table-column>
       </el-table>
-      <Pagination @refreshList="getGoodsList" :page="page" />
-      <SkuDetail  ref="skuDetail" />
+         <Pagination @refreshList="getGoodsList" :page="page" />
+         <SkuDetail  ref="skuDetail" />
     </el-card>
   </div>
 </template>
@@ -104,8 +101,9 @@ import productApi from '@/api/product/index';
 import barndApi from '@/api/brand/brand';
 import kindApi from '@/api/kind/kind'
 import pageMixin from '@/mixin/pageMixin';
-import Pagination from '@/components/Pagination.vue';
-import SkuDetail from './sku/BaseSkuvue.vue'
+import Pagination from '@/components/Pagination';
+import SkuDetail from './sku/BaseSkuvue'
+import Header from '@/components/Header'
 import { Tip } from "@/utils/index";
 
 export default {
@@ -113,13 +111,14 @@ export default {
   components: {
     Pagination,
     SkuDetail,
+    Header
   },
   mixins: [pageMixin], // 分页mixin
   data() {
     return {
       goodsList: [], // 商品列表
-      brandList: [], // 品牌列表
-      kindList: [], // 分类列表
+      brandList: {}, // 品牌列表
+      kindList: {}, // 分类列表
       loading: false, // 加载交互
       search: {}, // 搜索
     };
@@ -194,8 +193,13 @@ export default {
 
 <style  lang='scss' scoped>
 .product-main {
+  background-color: #F5F7FA;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  &::-webkit-scrollbar {display:none}
   .card {
-    margin: 40px;
+    margin: 30px;
     .brand {
       max-width: 250px;
       white-space: nowrap;

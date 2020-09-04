@@ -1,9 +1,11 @@
 <template>
   <div class="material-article-main">
-    <DetailArtic v-show="isDetailShow" ref="articleDeatil" @closeDeatil="openOrclose($event)" />
+      <transition name="fadeInUp">
+        <DetailArtic v-show="isDetailShow" ref="articleDeatil" @closeDeatil="openOrclose($event)" />
+      </transition>
     <div v-show="!isDetailShow">
       <Header />
-      <el-card class="card" shadow="hover">
+      <el-card class="card" shadow="never">
         <el-button type="primary" style="margin-bottom:20px;" @click="goAdd">新增</el-button>
         <el-table border :data="articleList" v-loading="loading">
           <el-table-column align="center" width="50" type="index" label="#"></el-table-column>
@@ -39,8 +41,8 @@
         <el-dialog title="文章信息" :visible.sync="dialog" width="50%" :before-close="handleClose">
           <p v-html="story"></p>
         </el-dialog>
+        <Pagination @refreshList="getArticleList" :page="page" />
       </el-card>
-      <Pagination :page="page" />
     </div>
   </div>
 </template>
@@ -157,6 +159,38 @@ export default {
     cursor: pointer;
     font-size: 12px;
     color: #ff0000;
+  }
+  background-color: #F5F7FA;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  &::-webkit-scrollbar {display:none}
+
+  .fadeInUp-enter-active {
+    animation: fadeInUp 0.4s 0.4s both;
+  }
+  .fadeInUp-leave-active {
+    animation: fadeInUp 0.4s reverse;
+  }
+  .fadeOutUp-enter-active {
+    animation: fadeInUp 0.4s 0.4s;
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(-110%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @keyframes fadeOutUp {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
   }
 }
 </style>

@@ -93,13 +93,27 @@ export const constantRoutes = [
         path: 'orderManage',
         name: 'OrderManage',
         component: () => import('@/views/order/index'),
-        meta: { title: '订单管理', icon: 'table' }
+        meta: { title: '订单管理', icon: 'table',  }
       },
       {
         path: 'orderDetail/:id',
         name: 'OrderDetail',
         component: () => import('@/views/order/oredrDetail/index'),
-        meta: { title: '订单详情', icon: 'table' }
+        meta: { title: '订单详情', icon: 'table' },
+        hidden: true
+      },
+      {
+        path: 'orderBack',
+        name: 'OrderBack',
+        component: () => import('@/views/order/OrderBack/index'),
+        meta: { title: '退单管理', icon: 'table' },
+      },
+      {
+        path: 'orderBackDetail/:id',
+        name: 'OrderBackDetail',
+        component: () => import('@/views/order/OrderBack/detail/index'),
+        meta: { title: '退单详情', icon: 'table' },
+        hidden: true,
       },
     ]
   },

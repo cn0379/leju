@@ -1,6 +1,12 @@
 <template>
-  <div class="dashboard-main">
-    <el-card class="card" shadow="never">
+  <div
+   class="dashboard-main"  v-loading="loading"
+    element-loading-text="拼命加载中"
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.4)">
+    <el-card
+    class="card" 
+    shadow="never" >
       <!-- <el-row :gutter="20">
         <el-col :span="6">
           <el-card class="card-item" shadow="hover">
@@ -96,6 +102,7 @@ export default {
       dashboardData: {
         orderByDay: [],
       }, // 仪表板 数据
+      loading: false
     };
   },
   created() {},
@@ -103,13 +110,17 @@ export default {
     this.getDashboardData();
   },
   methods: {
+    // 获取展示数据
     getDashboardData() {
+      this.loading = true
       dashboardApi.dashboardInfo().then((res) => {
         this.dashboardData = res;
         console.log(res);
         this.drawLine();
+        this.loading = false
       });
     },
+    // 初始化Echarts
     drawLine() {
       var myChart = echarts.init(document.getElementById("main"));
       const orderData = [];

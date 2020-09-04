@@ -5,14 +5,14 @@
         <span>搜索条件</span>
       </div>
       <el-row :gutter="30">
-        <el-col :span="6">
+        <el-col :span="5">
           <el-input :placeholder="`请输入${title}`" v-model="search.target" size="small" />
         </el-col>
-        <el-col :span="6">
+        <el-col :span="5">
           <el-input v-if="isShow" v-model="search.info" :placeholder="`请输入${desc}号`" size="small" />
         </el-col>
-        <el-col :span="6">
-          <el-select size="small"  v-model="search.status"  clearable :placeholder="status">
+        <el-col :span="4">
+          <el-select size="small" v-model="search.status" clearable :placeholder="status">
             <el-option
               v-for="( key, value ) in listOne"
               :key="key"
@@ -31,7 +31,7 @@
             ></el-option>
           </el-select>
         </el-col>
-        <el-col :span="4">
+        <el-col :span="3">
           <el-button size="small">重置</el-button>
           <el-button size="small" type="primary" @click="doSearch">搜索</el-button>
         </el-col>
@@ -59,7 +59,7 @@ export default {
       type: Object,
     },
     listTwo:{
-      type: Object ,
+      type: Object,
     },
     status: {
       type: String,
